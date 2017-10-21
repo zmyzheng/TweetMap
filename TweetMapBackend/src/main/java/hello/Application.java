@@ -11,6 +11,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+//
 //        ClassPathXmlApplicationContext context =
 //                new ClassPathXmlApplicationContext("applicationContext.xml");
 //
@@ -18,6 +19,8 @@ public class Application {
 //                context.getBean("twitterStreamHandler", TwitterStreamHandler.class);
 //
 //        twitterStreamHandler.inject();
+
+
 
 //        ElasticSearchService elasticSearchService =
 //                context.getBean("elasticSearchService", ElasticSearchService.class);

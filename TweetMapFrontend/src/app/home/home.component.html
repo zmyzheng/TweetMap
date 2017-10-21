@@ -62,7 +62,12 @@
               [label]="entity.keyword"
               [markerDraggable]="false">
     <agm-info-window>
-      <strong>{{entity.text}}</strong>
+      <strong>{{entity.username}}</strong>
+      <div>{{entity.createdAt}}</div>
+      <div>{{entity.place}}</div>
+      <!--<div>{{entity.tweetId}}</div>-->
+      <div>{{entity.text}}</div>
+
     </agm-info-window>
 
   </agm-marker>

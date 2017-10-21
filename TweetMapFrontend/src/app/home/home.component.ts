@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit {
   lng: number = 7.809007;
   marker: Marker;
   tweetEntities: TweetEntity[] = [];
-  keyWords: String[] = ["job", "love", "game", "fashion", "trump", "New York","fashion", "food", "lol","hilary", "hello"];
-  distance: number = 500;
+  keyWords: String[] = ["all", "sports", "family", "movie", "google", "apple", "amazon", "fashion", "food","song", "study"];
+  distance: number = 1000;
 
 
   constructor(private tweetService: TweetService) { }

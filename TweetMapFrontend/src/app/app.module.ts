@@ -22,8 +22,8 @@ import {FormsModule} from "@angular/forms";
     HttpModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent }
+      // { path: '', redirectTo: '/home', pathMatch: 'full' },
+      { path: '', component: HomeComponent }
     ]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBSExeeibbSosKkwhRk1P07EADD_ZbH3A4'

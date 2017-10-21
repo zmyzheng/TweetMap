@@ -28,7 +28,7 @@ public class ElasticSearchService {
 
     private JestClient client = null;
 
-    private static long docId = 2877;
+    private static long docId = System.currentTimeMillis();
 
 
     @Autowired
@@ -43,7 +43,8 @@ public class ElasticSearchService {
 
     public void indexDocument(TweetEntity tweetEntity) {
         Index index = new Index.Builder(tweetEntity).index(INDEX)
-                .type(TYPE).id(docId + "").build();
+                .type(TYPE)//.id(docId + "")
+                .build();
         try {
 
             client.execute(index);

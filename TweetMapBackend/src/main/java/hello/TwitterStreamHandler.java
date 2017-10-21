@@ -28,7 +28,7 @@ public class TwitterStreamHandler {
     @Value("${key.accessTokenSecret}")
     private String accessTokenSecret;
 
-    private String[] keywords = {"job", "love", "game", "fashion", "trump", "New York","fashion", "food", "lol","hilary", "hello"};
+    private String[] keywords = { "sports", "family", "movie", "google", "apple", "amazon", "fashion", "food","song", "study"};
 
     public void inject()  {
         ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -60,8 +60,11 @@ public class TwitterStreamHandler {
                             keyword = keywords[i];
                         }
                     }
-                    TweetEntity tweetEntity = new TweetEntity(keyword, username, place, longitude, latitude, tweetId, text, createdAt);
-                    elasticSearchService.indexDocument(tweetEntity);
+                    if (keyword != null) {
+                        TweetEntity tweetEntity = new TweetEntity(keyword, username, place, longitude, latitude, tweetId, text, createdAt);
+                        elasticSearchService.indexDocument(tweetEntity);
+                    }
+
 
                 }
             }
