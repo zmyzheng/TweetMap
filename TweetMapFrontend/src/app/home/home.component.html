@@ -1,0 +1,69 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" [routerLink]="'/welcome'">
+        Tweet Map
+      </a>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse">
+
+      <ul class="nav navbar-nav" style="padding:5px;">
+
+        <li  style="padding:10px;color:white">latitude: </li>
+        <li  style="padding:10px;color:white">{{lat}} </li>
+        <li  style="padding:10px;color:white">longitude: </li>
+        <li  style="padding:10px;color:white">{{lng}} </li>
+        <li  style="padding:10px;color:white">distance: </li>
+        <li  style="top: 7px; "><input type="text" class="form-control" style="height:25px; width: 90px" required [(ngModel)]="distance" name="distance">  </li>
+        <li  style="padding:10px;color:white">km</li>
+        <li  style="top: 7px" class=" btn-sm btn-info " (click)="filterDistance()">Filter</li>
+
+      </ul>
+
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+             role="button" aria-haspopup="true"
+             aria-expanded="false">Category <span class="caret"></span></a>
+
+          <ul class="dropdown-menu">
+            <li *ngFor="let keyword of keyWords"><a (click)="getTweets(keyword)">{{keyword}}</a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+<agm-map [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)" [zoom]="2">
+  <agm-circle [latitude]="lat" [longitude]="lng" [radius]="distance * 1000"
+              [fillColor]="'red'"
+              [circleDraggable]="true"
+              [editable]="true"></agm-circle>
+
+  <agm-marker *ngFor="let entity of tweetEntities; let i = index"
+              (markerClick)="clickedMarker(entity.keyword, i)"
+              [latitude]="entity.location.lat"
+              [longitude]="entity.location.lon"
+              [label]="entity.keyword"
+              [markerDraggable]="false">
+    <agm-info-window>
+      <strong>{{entity.text}}</strong>
+    </agm-info-window>
+
+  </agm-marker>
+</agm-map>
