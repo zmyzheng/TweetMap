@@ -155,7 +155,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" [routerLink]=\"'/welcome'\">\n        Tweet Map\n      </a>\n    </div>\n\n    <div id=\"navbar\" class=\"navbar-collapse collapse\">\n\n      <ul class=\"nav navbar-nav\" style=\"padding:5px;\">\n\n        <li  style=\"padding:10px;color:white\">latitude: </li>\n        <li  style=\"padding:10px;color:white\">{{lat}} </li>\n        <li  style=\"padding:10px;color:white\">longitude: </li>\n        <li  style=\"padding:10px;color:white\">{{lng}} </li>\n        <li  style=\"padding:10px;color:white\">distance: </li>\n        <li  style=\"top: 7px; \"><input type=\"text\" class=\"form-control\" style=\"height:25px; width: 90px\" required [(ngModel)]=\"distance\" name=\"distance\">  </li>\n        <li  style=\"padding:10px;color:white\">km</li>\n        <li  style=\"top: 7px\" class=\" btn-sm btn-info \" (click)=\"filterDistance()\">Filter</li>\n\n      </ul>\n\n\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"\n             role=\"button\" aria-haspopup=\"true\"\n             aria-expanded=\"false\">Category <span class=\"caret\"></span></a>\n\n          <ul class=\"dropdown-menu\">\n            <li *ngFor=\"let keyword of keyWords\"><a (click)=\"getTweets(keyword)\">{{keyword}}</a></li>\n          </ul>\n        </li>\n\n      </ul>\n\n    </div>\n\n  </div>\n</nav>\n\n\n<!-- this creates a google map on the page with the given lat/lng from -->\n<!-- the component as the initial center of the map: -->\n<agm-map [latitude]=\"lat\" [longitude]=\"lng\" (mapClick)=\"mapClicked($event)\" [zoom]=\"2\">\n  <agm-circle [latitude]=\"lat\" [longitude]=\"lng\" [radius]=\"distance * 1000\"\n              [fillColor]=\"'red'\"\n              [circleDraggable]=\"true\"\n              [editable]=\"true\"></agm-circle>\n\n  <agm-marker *ngFor=\"let entity of tweetEntities; let i = index\"\n              (markerClick)=\"clickedMarker(entity.keyword, i)\"\n              [latitude]=\"entity.location.lat\"\n              [longitude]=\"entity.location.lon\"\n              [label]=\"entity.keyword\"\n              [markerDraggable]=\"false\">\n    <agm-info-window>\n      <strong>{{entity.username}}</strong>\n      <div>{{entity.createdAt}}</div>\n      <div>{{entity.place}}</div>\n      <!--<div>{{entity.tweetId}}</div>-->\n      <div>{{entity.text}}</div>\n\n    </agm-info-window>\n\n  </agm-marker>\n</agm-map>\n"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" [routerLink]=\"'/welcome'\">\n        Tweet Map\n      </a>\n    </div>\n\n    <div id=\"navbar\" class=\"navbar-collapse collapse\">\n\n      <ul class=\"nav navbar-nav\" style=\"padding:5px;\">\n\n        <li  style=\"padding:10px;color:white\">latitude: </li>\n        <li  style=\"padding:10px;color:white\">{{lat}} </li>\n        <li  style=\"padding:10px;color:white\">longitude: </li>\n        <li  style=\"padding:10px;color:white\">{{lng}} </li>\n        <li  style=\"padding:10px;color:white\">distance: </li>\n        <li  style=\"top: 7px; \"><input type=\"text\" class=\"form-control\" style=\"height:25px; width: 90px\" required [(ngModel)]=\"distance\" name=\"distance\">  </li>\n        <li  style=\"padding:10px;color:white\">km</li>\n        <li  style=\"top: 7px\" class=\" btn-sm btn-info \" (click)=\"filterDistance()\">Filter</li>\n\n      </ul>\n\n\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"\n             role=\"button\" aria-haspopup=\"true\"\n             aria-expanded=\"false\">Category <span class=\"caret\"></span></a>\n\n          <ul class=\"dropdown-menu\">\n            <li *ngFor=\"let keyword of keyWords\"><a (click)=\"getTweets(keyword)\">{{keyword}}</a></li>\n          </ul>\n        </li>\n\n      </ul>\n\n    </div>\n\n  </div>\n</nav>\n\n\n<!-- this creates a google map on the page with the given lat/lng from -->\n<!-- the component as the initial center of the map: -->\n<agm-map [latitude]=\"lat\" [longitude]=\"lng\" (mapClick)=\"mapClicked($event)\" [zoom]=\"2\">\n  <agm-circle [latitude]=\"lat\" [longitude]=\"lng\" [radius]=\"distance * 1000\"\n              [fillColor]=\"'red'\"\n              [circleDraggable]=\"true\"\n              [editable]=\"true\"></agm-circle>\n\n  <agm-marker *ngFor=\"let entity of tweetEntities; let i = index\"\n              (markerClick)=\"clickedMarker(entity.keyword, i)\"\n              [latitude]=\"entity.location.lat\"\n              [longitude]=\"entity.location.lon\"\n              [label]=\"entity.keyword\"\n              [markerDraggable]=\"false\">\n    <agm-info-window>\n      <strong>{{entity.username}}</strong>\n      <div>{{entity.createdAt | date:'medium'}}</div>\n      <div>{{entity.place}}</div>\n      <!--<div>{{entity.tweetId}}</div>-->\n      <div>{{entity.text}}</div>\n\n    </agm-info-window>\n\n  </agm-marker>\n</agm-map>\n"
 
 /***/ }),
 
@@ -215,6 +215,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var HomeComponent = (function () {
     function HomeComponent(tweetService) {
         this.tweetService = tweetService;
+        this.today = new Date(Date.now());
         this.lat = 51.678418;
         this.lng = 7.809007;
         this.tweetEntities = [];
@@ -227,19 +228,25 @@ var HomeComponent = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.tweetService.getTweetsByKeyword('all')];
+                        console.log(this.today);
+                        _a.label = 1;
                     case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.tweetService.getTweetsByKeyword('all')];
+                    case 2:
                         result = _a.sent();
                         this.tweetEntities = result;
+                        // for (let i = 0; i < this.tweetEntities.length; i++) {
+                        //   this.tweetEntities[i].createdAt = new Date(this.tweetEntities[i].createdAt);
+                        // }
                         console.log('get Tweets By Keyword success');
                         console.log(this.tweetEntities.length);
-                        return [3 /*break*/, 3];
-                    case 2:
+                        return [3 /*break*/, 4];
+                    case 3:
                         ex_1 = _a.sent();
                         console.error('An error occurred', ex_1);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
             });
         });
@@ -255,6 +262,9 @@ var HomeComponent = (function () {
                     case 1:
                         result = _a.sent();
                         this.tweetEntities = result;
+                        // for (let i = 0; i < this.tweetEntities.length; i++) {
+                        //   this.tweetEntities[i].createdAt = new Date(this.tweetEntities[i].createdAt);
+                        // }
                         console.log('get Tweets By Keyword success');
                         return [3 /*break*/, 3];
                     case 2:
@@ -277,6 +287,9 @@ var HomeComponent = (function () {
                     case 1:
                         result = _a.sent();
                         this.tweetEntities = result;
+                        // for (let i = 0; i < this.tweetEntities.length; i++) {
+                        //   this.tweetEntities[i].createdAt = new Date(this.tweetEntities[i].createdAt);
+                        // }
                         console.log('get Tweets By Keyword success');
                         return [3 /*break*/, 3];
                     case 2:

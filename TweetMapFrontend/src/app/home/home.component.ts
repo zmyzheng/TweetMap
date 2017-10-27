@@ -10,6 +10,7 @@ import { MouseEvent as AGMMouseEvent } from '@agm/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  today: Date = new Date(Date.now());
 
   lat: number = 51.678418;
   lng: number = 7.809007;
@@ -22,9 +23,13 @@ export class HomeComponent implements OnInit {
   constructor(private tweetService: TweetService) { }
 
   async ngOnInit(): Promise<any> {
+    console.log(this.today);
     try {
       let result = await this.tweetService.getTweetsByKeyword('all');
       this.tweetEntities = result;
+      // for (let i = 0; i < this.tweetEntities.length; i++) {
+      //   this.tweetEntities[i].createdAt = new Date(this.tweetEntities[i].createdAt);
+      // }
       console.log('get Tweets By Keyword success');
       console.log(this.tweetEntities.length);
     } catch (ex) {
@@ -35,6 +40,9 @@ export class HomeComponent implements OnInit {
     try {
       let result = await this.tweetService.getTweetsByKeyword(keyword);
       this.tweetEntities = result;
+      // for (let i = 0; i < this.tweetEntities.length; i++) {
+      //   this.tweetEntities[i].createdAt = new Date(this.tweetEntities[i].createdAt);
+      // }
       console.log('get Tweets By Keyword success');
     } catch (ex) {
       console.error('An error occurred', ex);
@@ -45,6 +53,9 @@ export class HomeComponent implements OnInit {
     try {
       let result = await this.tweetService.searchWithinDistance(this.lat, this.lng, this.distance);
       this.tweetEntities = result;
+      // for (let i = 0; i < this.tweetEntities.length; i++) {
+      //   this.tweetEntities[i].createdAt = new Date(this.tweetEntities[i].createdAt);
+      // }
       console.log('get Tweets By Keyword success');
     } catch (ex) {
       console.error('An error occurred', ex);

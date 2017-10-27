@@ -6,6 +6,7 @@ import io.searchbox.client.JestResult;
 import io.searchbox.client.config.HttpClientConfig;
 import io.searchbox.core.Index;
 import io.searchbox.core.Search;
+import io.searchbox.core.search.sort.Sort;
 import io.searchbox.params.Parameters;
 import org.elasticsearch.common.unit.DistanceUnit;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -16,6 +17,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
+
+import static io.searchbox.core.search.sort.Sort.Sorting.ASC;
+import static io.searchbox.core.search.sort.Sort.Sorting.DESC;
 
 @Component
 public class ElasticSearchService {
@@ -62,7 +66,7 @@ public class ElasticSearchService {
         else {
             searchSourceBuilder.query(QueryBuilders.matchQuery("keyword", key));
         }
-        Search search = new Search.Builder(searchSourceBuilder.toString()).setParameter(Parameters.SIZE, 100)
+        Search search = new Search.Builder(searchSourceBuilder.toString()).addSort(new Sort("createdAt", DESC)).setParameter(Parameters.SIZE, 100)
                 .addIndex(INDEX).addType(TYPE).build();
         List<TweetEntity> tweetEntities = null;
         try {
@@ -80,7 +84,7 @@ public class ElasticSearchService {
 
         searchSourceBuilder.query(QueryBuilders.geoDistanceQuery("location").point(lat, lon).distance(distance, DistanceUnit.KILOMETERS));
 
-        Search search = new Search.Builder(searchSourceBuilder.toString()).setParameter(Parameters.SIZE, 100)
+        Search search = new Search.Builder(searchSourceBuilder.toString()).addSort(new Sort("createdAt", DESC)).setParameter(Parameters.SIZE, 100)
                 .addIndex(INDEX).addType(TYPE).build();
         List<TweetEntity> tweetEntities = null;
         try {

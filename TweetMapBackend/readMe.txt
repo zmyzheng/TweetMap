@@ -8,7 +8,7 @@ curl -X PUT "https://search-database-yp7n3mmtmp6fybvuhvst6o6bxa.us-west-2.es.ama
 curl -X PUT "https://search-database-yp7n3mmtmp6fybvuhvst6o6bxa.us-west-2.es.amazonaws.com/stream/tweets/_mapping" -d '{
    "tweets" : {
    "properties" : {
-       "createdAt" : { "type" : "string" },
+       "createdAt" : { "type" : "date" },
        "location" : { "type" : "geo_point"},
        "keyword": { "type" : "string" },
        "place": {"type" : "string" },
@@ -17,3 +17,9 @@ curl -X PUT "https://search-database-yp7n3mmtmp6fybvuhvst6o6bxa.us-west-2.es.ama
        "username":{"type" : "string" }
    }}
 }'
+
+./mvnw spring-boot:run
+
+./mvnw clean package
+
+java -jar target/twitterservice-1.0-SNAPSHOT.jar

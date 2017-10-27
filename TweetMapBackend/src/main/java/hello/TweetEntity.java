@@ -29,9 +29,9 @@ public class TweetEntity {
 
     private long tweetId;
     private String text;
-    private String createdAt;
+    private Date createdAt;
 
-    public TweetEntity(String keyword, String username, String place, double longitude, double latitude, long tweetId, String text, String createdAt) {
+    public TweetEntity(String keyword, String username, String place, double longitude, double latitude, long tweetId, String text, Date createdAt) {
         this.keyword = keyword;
         this.username = username;
         this.place = place;
@@ -99,9 +99,9 @@ public class TweetEntity {
         this.text = text;
     }
 
-    public String getCreatedAt() { return createdAt; }
+    public Date getCreatedAt() { return createdAt; }
 
-    public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
+    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
 
     public GeoPoint getLocation() { return location; }
 

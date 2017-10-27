@@ -9,7 +9,7 @@ export class TweetEntity {
   location: Geo;
   tweetId: number;
   text: string;
-  createdAt: string;
+  createdAt: Date;
 
 
 }

@@ -53,7 +53,7 @@ public class TwitterStreamHandler {
                     String text = status.getText();
                     double longitude = status.getGeoLocation().getLongitude();
                     double latitude = status.getGeoLocation().getLatitude();
-                    String createdAt = status.getCreatedAt().toString();
+                    Date createdAt = status.getCreatedAt();
                     String keyword = null;
                     for(int i = 0; i < keywords.length; i ++){
                         if(text.toLowerCase().indexOf(keywords[i]) != -1){
