@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       let result = await this.tweetService.getTweetsByKeyword('all');
       this.tweetEntities = result;
       // for (let i = 0; i < this.tweetEntities.length; i++) {
-      //   this.tweetEntities[i].createdAt = new Date(this.tweetEntities[i].createdAt);
+      //   this.tweetEntities[i].createdDate = new Date(this.tweetEntities[i].createdAt).toString();
       // }
       console.log('get Tweets By Keyword success');
       console.log(this.tweetEntities.length);
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
       let result = await this.tweetService.getTweetsByKeyword(keyword);
       this.tweetEntities = result;
       // for (let i = 0; i < this.tweetEntities.length; i++) {
-      //   this.tweetEntities[i].createdAt = new Date(this.tweetEntities[i].createdAt);
+      //   this.tweetEntities[i].createdDate = new Date(this.tweetEntities[i].createdAt).toString();
       // }
       console.log('get Tweets By Keyword success');
     } catch (ex) {
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
       let result = await this.tweetService.searchWithinDistance(this.lat, this.lng, this.distance);
       this.tweetEntities = result;
       // for (let i = 0; i < this.tweetEntities.length; i++) {
-      //   this.tweetEntities[i].createdAt = new Date(this.tweetEntities[i].createdAt);
+      //   this.tweetEntities[i].createdDate = new Date(this.tweetEntities[i].createdAt).toString();
       // }
       console.log('get Tweets By Keyword success');
     } catch (ex) {

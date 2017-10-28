@@ -10,6 +10,6 @@ export class TweetEntity {
   tweetId: number;
   text: string;
   createdAt: Date;
-
+  // createdDate: string;
 
 }
