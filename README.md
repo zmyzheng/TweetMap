@@ -22,7 +22,9 @@ This project develop and deploys a web application using AWS Cloud services. The
 run the program:
 
 1. build frontend
+
 $ cd TweetMapFrontend
+
 $ ng build 
 
 2. copy files in target into TweetMapBackend/src/main/resources/static/
