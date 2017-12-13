@@ -1,0 +1,12 @@
+elasticsearch/bin/elasticsearch &
+sleep 10
+kibana/bin/kibana &
+
+kafka/bin/zookeeper-server-start.sh kafka/config/zookeeper.properties &
+sleep 10
+kafka/bin/kafka-server-start.sh kafka/config/server.properties &
+sleep 10
+ZK_HOSTS="localhost:2181" kafka-manager/bin/kafka-manager &
+
+
+# set advised.listeners
