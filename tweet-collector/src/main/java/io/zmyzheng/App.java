@@ -15,7 +15,7 @@ import java.util.Properties;
 public class App {
 
     public static void main(String[] args) throws IOException {
-        InputStream in = new FileInputStream(new File("TweetCollector/src/main/resources/application.properties"));
+        InputStream in = new FileInputStream(new File("tweet-collector/src/main/resources/application.properties"));
 
         Properties properties = new Properties();
         properties.load(in);

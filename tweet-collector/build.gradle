@@ -43,14 +43,14 @@ jar {
     manifest {
         attributes 'Main-Class':'io.zmyzheng.App'
     }
-    setArchiveClassifier(System.getProperty("buildTimestamp"))
+//    setArchiveClassifier(System.getProperty("buildTimestamp"))
 }
 
 
 // dockerRepo is defined in gradle.properties
 docker {
     dependsOn jar
-    name "${dockerRepo}/${jar.getArchiveBaseName().get()}:${jar.getArchiveVersion().get()}-${jar.getArchiveClassifier().get()}"
+    name "${dockerRepo}/${jar.getArchiveBaseName().get()}:${jar.getArchiveVersion().get()}"  //-${jar.getArchiveClassifier().get()}
     dockerfile file('Dockerfile')
     files jar.archivePath
     buildArgs(['JAR_FILE': "${jar.getArchiveFileName().get()}", 'APP_NAME': "${jar.getArchiveBaseName().get()}"])
