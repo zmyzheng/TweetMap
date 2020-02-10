@@ -2,7 +2,8 @@ plugins {
     id 'java'
     id 'application'
     id "com.github.johnrengelman.shadow" version "4.0.3"
-
+    id "com.palantir.docker" version "0.22.1"
+    id "com.gorylenko.gradle-git-properties" version "1.5.1"   // auto generate git.properties and visible at /actuator/info
 }
 
 group 'io.github.zmyzheng'
@@ -42,4 +43,18 @@ jar {
     manifest {
         attributes 'Main-Class':'io.github.zmyzheng.App'
     }
+    setArchiveClassifier(System.getProperty("buildTimestamp"))
+}
+
+
+
+// dockerRepo is defined in gradle.properties
+docker {
+    dependsOn jar
+    name "${dockerRepo}/${jar.getArchiveBaseName().get()}:${jar.getArchiveVersion().get()}-${jar.getArchiveClassifier().get()}"
+    dockerfile file('Dockerfile')
+    files jar.archivePath
+    buildArgs(['JAR_FILE': "${jar.getArchiveFileName().get()}", 'APP_NAME': "${jar.getArchiveBaseName().get()}"])
+    pull false
+    noCache true
 }

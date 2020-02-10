@@ -1,3 +1,7 @@
+import java.time.format.DateTimeFormatter
+
+
 rootProject.name = 'TweetMap'
 include 'TweetCollector'
 
+System.setProperty("buildTimestamp", LocalDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")))
