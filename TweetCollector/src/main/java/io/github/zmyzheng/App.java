@@ -24,7 +24,18 @@ public class App {
 //        String apiSecret = config.get("twitter.apiSecret").toString();
 //        String token = config.get("twitter.token").toString();
 //        String secret = config.get("twitter.secret").toString();
-        log.info("Using the following credential: {}", properties);
+        log.info("Using the following configuration: {}", properties);
+
+        TweetCollector collector = new TweetCollector(
+                        properties.get("twitter.apiKey").toString(),
+                        properties.get("twitter.apiSecret").toString(),
+                        properties.get("twitter.token").toString(),
+                        properties.get("twitter.secret").toString(),
+                        properties.get("kafka.brokerList").toString(),
+                        properties.get("kafka.topic").toString()
+        );
+
+        collector.run();
 
     }
 }
