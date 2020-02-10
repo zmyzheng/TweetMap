@@ -19,7 +19,6 @@ public class App {
 
         Properties properties = new Properties();
         properties.load(in);
-        System.out.println(properties);
 
 //        String apiKey = config.get("twitter.apiKey").toString();
 //        String apiSecret = config.get("twitter.apiSecret").toString();
