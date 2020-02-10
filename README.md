@@ -1,5 +1,8 @@
 # TweetMap
 
+ ./gradlew :TweetCollector:build
+
+java -jar TweetCollector/build/libs/TweetCollector-1.0-SNAPSHOT.jar
 
 Tweet Map with Trends
 
