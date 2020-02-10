@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 import java.io.*;
-import java.util.Map;
+
 import java.util.Properties;
 
 /**
@@ -20,10 +20,7 @@ public class App {
         Properties properties = new Properties();
         properties.load(in);
 
-//        String apiKey = config.get("twitter.apiKey").toString();
-//        String apiSecret = config.get("twitter.apiSecret").toString();
-//        String token = config.get("twitter.token").toString();
-//        String secret = config.get("twitter.secret").toString();
+
         log.info("Using the following configuration: {}", properties);
 
         TweetCollector collector = new TweetCollector(

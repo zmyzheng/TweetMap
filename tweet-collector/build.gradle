@@ -47,7 +47,6 @@ jar {
 }
 
 
-
 // dockerRepo is defined in gradle.properties
 docker {
     dependsOn jar
