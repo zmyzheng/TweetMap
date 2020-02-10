@@ -1,4 +1,4 @@
-package io.github.zmyzheng;
+package io.zmyzheng;
 
 import lombok.extern.slf4j.Slf4j;
 

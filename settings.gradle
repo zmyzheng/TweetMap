@@ -5,3 +5,5 @@ rootProject.name = 'TweetMap'
 include 'tweet-collector'
 
 System.setProperty("buildTimestamp", LocalDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")))
+include 'flink-processor'
+

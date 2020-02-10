@@ -6,7 +6,7 @@ plugins {
     id "com.gorylenko.gradle-git-properties" version "1.5.1"   // auto generate git.properties and visible at /actuator/info
 }
 
-group 'io.github.zmyzheng'
+group 'io.zmyzheng'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
@@ -15,7 +15,7 @@ repositories {
     mavenCentral()
 }
 
-mainClassName = 'io.github.zmyzheng.App'
+mainClassName = 'io.zmyzheng.App'
 
 dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.12'
@@ -41,7 +41,7 @@ shadowJar {
 
 jar {
     manifest {
-        attributes 'Main-Class':'io.github.zmyzheng.App'
+        attributes 'Main-Class':'io.zmyzheng.App'
     }
     setArchiveClassifier(System.getProperty("buildTimestamp"))
 }
