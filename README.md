@@ -1,6 +1,6 @@
 # TweetMap
 
- ./gradlew :TweetCollector:build
+./gradlew :tweet-collector:clean :tweet-collector:build :tweet-collector:dockerPush
 
 java -jar TweetCollector/build/libs/TweetCollector-1.0-SNAPSHOT.jar
 
