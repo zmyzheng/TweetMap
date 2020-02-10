@@ -72,15 +72,15 @@ public class TweetCollector {
                 twitterClient.stop();
             }
             if (msg != null){
-                log.info(msg);
-//                producer.send(new ProducerRecord<>(topic, null, msg), new Callback() {
-//                    @Override
-//                    public void onCompletion(RecordMetadata recordMetadata, Exception e) {
-//                        if (e != null) {
-//                            log.error("Something bad happened", e);
-//                        }
-//                    }
-//                });
+//                log.debug(msg);
+                producer.send(new ProducerRecord<>(topic, null, msg), new Callback() {
+                    @Override
+                    public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+                        if (e != null) {
+                            log.error("Something bad happened", e);
+                        }
+                    }
+                });
             }
         }
         log.info("End of application");
