@@ -11,7 +11,7 @@ targetCompatibility = 1.8
 
 
 
-mainClassName = 'io.zmyzheng.App'
+mainClassName = 'io.zmyzheng.collector.App'
 
 dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.12'

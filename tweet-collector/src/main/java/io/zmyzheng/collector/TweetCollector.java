@@ -1,4 +1,4 @@
-package io.zmyzheng;
+package io.zmyzheng.collector;
 
 import com.twitter.hbc.ClientBuilder;
 import com.twitter.hbc.core.Client;

@@ -1,4 +1,4 @@
-package io.zmyzheng;
+package io.zmyzheng.collector;
 
 import lombok.extern.slf4j.Slf4j;
 
