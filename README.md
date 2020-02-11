@@ -2,7 +2,7 @@
 
 ./gradlew :tweet-collector:clean :tweet-collector:build :tweet-collector:dockerPush
 
-java -jar TweetCollector/build/libs/TweetCollector-1.0-SNAPSHOT.jar
+java -jar tweet-collector/build/libs/tweet-collector-1.0-SNAPSHOT.jar
 
 
 Tweet Map with Trends

@@ -3,6 +3,7 @@ System.setProperty("buildTimestamp", LocalDateTime.now(ZoneOffset.UTC).format(Da
 
 
 rootProject.name = 'TweetMap'
+
 include 'tweet-collector'
 
 

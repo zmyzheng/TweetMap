@@ -31,16 +31,16 @@ dependencies {
 
 shadowJar {
     mergeServiceFiles()
-    classifier = null
+//    classifier = null
     zip64 = true
 }
 
-jar {
-    manifest {
-        attributes 'Main-Class':'io.zmyzheng.App'
-    }
+//jar {
+//    manifest {
+//        attributes 'Main-Class':'io.zmyzheng.App'
+//    }
 //    setArchiveClassifier(System.getProperty("buildTimestamp"))
-}
+//}
 
 
 // dockerRepo is defined in gradle.properties
