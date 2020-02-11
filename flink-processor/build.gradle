@@ -8,7 +8,7 @@ plugins {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-mainClassName = 'io.zmyzheng.App'
+mainClassName = 'io.zmyzheng.processor.App'
 
 ext {
     javaVersion = '1.8'
