@@ -1,15 +1,18 @@
 plugins {
     id 'java'
+    id 'application'
+    id "com.github.johnrengelman.shadow" version "4.0.3"
+    id "com.palantir.docker" version "0.22.1"
+    id "com.gorylenko.gradle-git-properties" version "1.5.1"   // auto generate git.properties and visible at /actuator/info
 }
-
-group 'io.zmyzheng'
-version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
-repositories {
-    mavenCentral()
-}
+
+
+
+
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'

@@ -6,14 +6,10 @@ plugins {
     id "com.gorylenko.gradle-git-properties" version "1.5.1"   // auto generate git.properties and visible at /actuator/info
 }
 
-group 'io.zmyzheng'
-version '1.0-SNAPSHOT'
-
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
-repositories {
-    mavenCentral()
-}
+
 
 mainClassName = 'io.zmyzheng.App'
 
