@@ -13,6 +13,7 @@ import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.CheckpointConfig;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.connectors.elasticsearch6.ElasticsearchSink;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011;
 
 import java.io.IOException;
@@ -28,6 +29,12 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public class StreamProcessor {
+
+    ElasticsearchSink<Tweet> elasticsearchSink;
+
+    public StreamProcessor(ElasticsearchSink<Tweet> elasticsearchSink) {
+        this.elasticsearchSink = elasticsearchSink;
+    }
 
     public void run() throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -89,7 +96,9 @@ public class StreamProcessor {
             }
         });
 
-        validTweets.writeAsText("aaa");
+
+        validTweets.addSink(elasticsearchSink);
+//        validTweets.writeAsText("aaa");
         env.execute();
 
     }
