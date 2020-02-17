@@ -1,4 +1,4 @@
-package io.zmyzheng.restapi.domains;
+package io.zmyzheng.restapi.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

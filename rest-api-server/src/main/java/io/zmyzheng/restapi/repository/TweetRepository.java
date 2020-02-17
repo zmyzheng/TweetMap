@@ -1,6 +1,6 @@
-package io.zmyzheng.restapi.repositories;
+package io.zmyzheng.restapi.repository;
 
-import io.zmyzheng.restapi.domains.Tweet;
+import io.zmyzheng.restapi.domain.Tweet;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 

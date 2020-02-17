@@ -1,12 +1,8 @@
 package io.zmyzheng.restapi.bootstrap;
 
-import io.zmyzheng.restapi.domains.Tweet;
-import io.zmyzheng.restapi.repositories.TweetRepository;
+import io.zmyzheng.restapi.repository.TweetRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
-import java.util.Date;
 
 /**
  * @Author: Mingyang Zheng
