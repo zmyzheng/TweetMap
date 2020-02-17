@@ -44,7 +44,7 @@ public class EsSinkFactory {
                     public IndexRequest createIndexRequest(Tweet element) throws JsonProcessingException {
                         ObjectMapper objectMapper = new ObjectMapper();
                         return Requests.indexRequest()
-                                .index("twitter")
+                                .index("streaming")
                                 .type("tweets")
                                 .source(objectMapper.writeValueAsBytes(element), XContentType.JSON);
                     }

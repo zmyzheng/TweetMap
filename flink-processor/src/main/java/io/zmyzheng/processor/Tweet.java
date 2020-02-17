@@ -16,6 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Tweet {
 
+    private String id;
+
     private long timestamp;
 
     private List<String> hashTags;
