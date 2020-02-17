@@ -22,8 +22,8 @@ public class Bootstrap implements CommandLineRunner {
     }
     @Override
     public void run(String... args) throws Exception {
-        Tweet tweet = new Tweet(null, new Date(), Arrays.asList("love", "peace"), Arrays.asList(-48.87868, -23.97924));
-        this.tweetRepository.save(tweet);
+//        Tweet tweet = new Tweet(null, new Date(), Arrays.asList("love", "peace"), Arrays.asList(-48.87868, -23.97924));
+//        this.tweetRepository.save(tweet);
 
         System.out.println(this.tweetRepository.findById("1CYSVXABUOm3GmEwuy9F"));
     }
