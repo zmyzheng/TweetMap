@@ -1,1 +1,4 @@
-
+spring:
+  elasticsearch:
+    rest:
+      uris: https://search-stream-test-orxqsrzwrhlwvifdk6k3sraygi.us-west-2.es.amazonaws.com
