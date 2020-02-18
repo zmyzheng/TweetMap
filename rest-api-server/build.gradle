@@ -43,6 +43,10 @@ test {
 	useJUnitPlatform()
 }
 
+springBoot {
+	buildInfo()   // generate build info ate /actuator/info
+}
+
 // dockerRepo is defined in gradle.properties
 docker {
 	dependsOn jar
