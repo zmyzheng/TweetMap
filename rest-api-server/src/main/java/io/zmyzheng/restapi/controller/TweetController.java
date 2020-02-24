@@ -1,5 +1,7 @@
 package io.zmyzheng.restapi.controller;
 
+import io.zmyzheng.restapi.api.model.Trend;
+import io.zmyzheng.restapi.api.model.TrendRequest;
 import io.zmyzheng.restapi.domain.Tweet;
 import io.zmyzheng.restapi.service.TweetService;
 import lombok.extern.slf4j.Slf4j;
@@ -31,5 +33,10 @@ public class TweetController {
         return this.tweetService.getTweets(timeFrom, timeTo);
     }
 
+    @PostMapping("/trends/search")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Trend> searchTrends(@RequestBody TrendRequest trendRequest) {
+        return this.tweetService.queryTrends(trendRequest);
+    }
 
 }

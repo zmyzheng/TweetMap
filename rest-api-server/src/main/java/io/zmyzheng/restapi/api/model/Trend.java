@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TrendResponse {
+public class Trend {
 
     private String tagName;
-    private int frequency;
+    private long frequency;
 }
