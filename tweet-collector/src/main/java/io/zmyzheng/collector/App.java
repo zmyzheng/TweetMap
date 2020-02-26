@@ -36,7 +36,7 @@ public class App {
                 "pCx8t4pEh6RHoMQChn9SpymIUCoJTrD3KDDQNgBDwEgh4jxUI41",
                 "827004953310949377-qlvGf7jrJmtIvJd77XllpzDwyiOVbst1",
                 "IaJvnMHYD0JVPIYgyRCIPCyFOTMEYCcrpvsSnlNtT4FQm1",
-                "54.212.221.82:9092",
+                "34.218.59.198:9092",
                 "tweets"
         );
 

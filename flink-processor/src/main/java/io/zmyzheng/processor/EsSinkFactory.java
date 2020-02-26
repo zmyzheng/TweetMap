@@ -46,6 +46,7 @@ public class EsSinkFactory {
                         return Requests.indexRequest()
                                 .index("streaming")
                                 .type("tweets")
+                                .id(element.getId())
                                 .source(objectMapper.writeValueAsBytes(element), XContentType.JSON);
                     }
 

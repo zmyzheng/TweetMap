@@ -2,7 +2,7 @@
 
 ./gradlew :tweet-collector:clean :tweet-collector:build :tweet-collector:dockerPush
 
-java -jar tweet-collector/build/libs/tweet-collector-1.0-SNAPSHOT.jar
+java -jar tweet-collector/build/libs/tweet-collector-1.1-SNAPSHOT.jar
 
 ./gradlew :flink-processor:clean :flink-processor:build
 

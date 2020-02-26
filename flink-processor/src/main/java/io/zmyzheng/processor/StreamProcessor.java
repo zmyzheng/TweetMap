@@ -58,7 +58,7 @@ public class StreamProcessor {
         env.getCheckpointConfig().setPreferCheckpointForRecovery(true);
 
         Properties properties = new Properties();
-        properties.setProperty("bootstrap.servers", "54.212.221.82:9092");
+        properties.setProperty("bootstrap.servers", "34.218.59.198:9092");
         properties.setProperty("group.id", this.getClass().getName());
 
         DataStream<String> dataStream = env.addSource(new FlinkKafkaConsumer011<String>("tweets", new SimpleStringSchema(), properties));
@@ -71,6 +71,7 @@ public class StreamProcessor {
                 try {
                     JsonNode node = objectMapper.readTree(value);
                     Tweet tweet = new Tweet();
+                    tweet.setId(node.get("id_str").asText());
                     tweet.setTimestamp(Long.parseLong(node.get("timestamp_ms").asText()));
 
                     ArrayNode arrayNode = (ArrayNode) node.get("coordinates").get("coordinates");

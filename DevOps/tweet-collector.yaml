@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: tweet-collector
-          image: zmyzheng/tweet-collector:1.0-SNAPSHOT
+          image: zmyzheng/tweet-collector:1.1-SNAPSHOT
 #          ports:
 #            - containerPort: 8443
   #          args: ["--kafka.bootstrapServers=b-3.fs-ec-msk-cluster-vpc.n6h4ok.c2.kafka.us-west-2.amazonaws.com:9092,b-1.fs-ec-msk-cluster-vpc.n6h4ok.c2.kafka.us-west-2.amazonaws.com:9092,b-2.fs-ec-msk-cluster-vpc.n6h4ok.c2.kafka.us-west-2.amazonaws.com:9092"]
