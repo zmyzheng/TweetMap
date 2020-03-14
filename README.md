@@ -11,7 +11,8 @@
 
 ![](TweetMap-Architecture.png)
 
-
+![](ScaledCircle.png)
+![](HeatMap.png)
 
 
 ## Build
