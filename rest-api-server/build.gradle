@@ -1,13 +1,13 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.4.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'org.springframework.boot' version '2.4.0'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
-	id "com.palantir.docker" version "0.22.1"
-	id "com.gorylenko.gradle-git-properties" version "1.5.1"   // auto generate git.properties and visible at /actuator/info
+	id "com.palantir.docker" version "0.25.0"
+	id "com.gorylenko.gradle-git-properties" version "2.2.4"   // auto generate git.properties and visible at /actuator/info
 }
 
 
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
@@ -18,7 +18,7 @@ configurations {
 
 
 ext {
-	set('springBootAdminVersion', "2.2.1")
+	set('springBootAdminVersion', "2.3.1")
 }
 
 dependencies {
@@ -28,9 +28,7 @@ dependencies {
 	implementation 'de.codecentric:spring-boot-admin-starter-client'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {

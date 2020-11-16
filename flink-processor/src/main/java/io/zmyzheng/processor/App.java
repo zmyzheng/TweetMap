@@ -1,6 +1,7 @@
 package io.zmyzheng.processor;
 
-import org.apache.flink.streaming.connectors.elasticsearch6.ElasticsearchSink;
+
+import org.apache.flink.streaming.connectors.elasticsearch7.ElasticsearchSink;
 
 /**
  * @Author: Mingyang Zheng

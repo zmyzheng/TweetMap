@@ -13,8 +13,9 @@ import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.CheckpointConfig;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.elasticsearch6.ElasticsearchSink;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011;
+import org.apache.flink.streaming.connectors.elasticsearch7.ElasticsearchSink;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class StreamProcessor {
         properties.setProperty("bootstrap.servers", "34.218.59.198:9092");
         properties.setProperty("group.id", this.getClass().getName());
 
-        DataStream<String> dataStream = env.addSource(new FlinkKafkaConsumer011<String>("tweets", new SimpleStringSchema(), properties));
+        DataStream<String> dataStream = env.addSource(new FlinkKafkaConsumer<String>("tweets", new SimpleStringSchema(), properties));
 
 
         DataStream<Tweet> tweetDataStream = dataStream.map(new MapFunction<String, Tweet>() {
