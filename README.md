@@ -17,6 +17,10 @@
 
 ## Build
 
+JDK version:
+1. *master* branch and *dev-jdk11* branch: JDK 11
+2. *dev-jdk8* branch: JDK 8
+
 ./gradlew :tweet-collector:clean :tweet-collector:build :tweet-collector:dockerPush
 
 java -jar tweet-collector/build/libs/tweet-collector-1.1-SNAPSHOT.jar
