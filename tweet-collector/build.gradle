@@ -1,23 +1,25 @@
 plugins {
     id 'java'
     id 'application'
-    id "com.github.johnrengelman.shadow" version "4.0.3"
-    id "com.palantir.docker" version "0.22.1"
-    id "com.gorylenko.gradle-git-properties" version "1.5.1"   // auto generate git.properties and visible at /actuator/info
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+    id "com.palantir.docker" version "0.25.0"
+    id "com.gorylenko.gradle-git-properties" version "2.2.4"   // auto generate git.properties and visible at /actuator/info
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 
 
-mainClassName = 'io.zmyzheng.collector.App'
+mainClassName = 'io.zmyzheng.collector.SocialMediaCollectionDriver'
 
 dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+    testCompileOnly 'org.projectlombok:lombok:1.18.16'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
 //    implementation group: 'org.yaml', name: 'snakeyaml', version: '1.25'
-    implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '2.4.0'
+    implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '2.6.0'
     implementation group: 'com.twitter', name: 'hbc-core', version: '2.2.0'
 
     // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
@@ -37,7 +39,7 @@ shadowJar {
 
 //jar {
 //    manifest {
-//        attributes 'Main-Class':'io.zmyzheng.App'
+//        attributes 'Main-Class':'io.zmyzheng.SocialMediaCollectionDriver'
 //    }
 //    setArchiveClassifier(System.getProperty("buildTimestamp"))
 //}

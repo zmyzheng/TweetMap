@@ -1,18 +1,17 @@
 plugins {
     id 'java'
     id 'application'
-    id "com.github.johnrengelman.shadow" version "4.0.3"
-    id "com.gorylenko.gradle-git-properties" version "1.5.1"   // auto generate git.properties and visible at /actuator/info
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+    id "com.gorylenko.gradle-git-properties" version "2.2.4"   // auto generate git.properties and visible at /actuator/info
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 mainClassName = 'io.zmyzheng.processor.App'
 
 ext {
-    javaVersion = '1.8'
-    flinkVersion = '1.9.0'
+    flinkVersion = '1.11.2'
     scalaBinaryVersion = '2.11'
 
 }
@@ -21,15 +20,17 @@ ext {
 
 dependencies {
 
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    compileOnly 'org.projectlombok:lombok:1.18.16'
+    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+    testCompileOnly 'org.projectlombok:lombok:1.18.16'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
 
     compileOnly "org.apache.flink:flink-java:${flinkVersion}"
     compileOnly "org.apache.flink:flink-streaming-java_${scalaBinaryVersion}:${flinkVersion}"
 
-    implementation "org.apache.flink:flink-connector-kafka-0.11_${scalaBinaryVersion}:${flinkVersion}"
+    implementation "org.apache.flink:flink-connector-kafka_${scalaBinaryVersion}:${flinkVersion}"
 
-    implementation group: 'org.apache.flink', name: 'flink-connector-elasticsearch6_2.11', version: '1.6.0'
+    implementation group: 'org.apache.flink', name: 'flink-connector-elasticsearch7_2.11', version: '1.11.2'
 
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
