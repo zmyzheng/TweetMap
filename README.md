@@ -15,6 +15,15 @@
 ![](HeatMap.png)
 
 
+## Project structure
+- **tweet-collector**: collect real-time tweets with Twitter Streaming API and push to Kafka cluster. 
+  - To support other social media, implement *SocialMediaCollector* interface.
+  - To support other message queues, implement *Sinkable* interface.
+  
+- **rest-api-server**: A RESTful API server querying tweets from Elasticsearch using SpringBoot framework.
+- **flink-processor**: Streaming process tweets and ingest into Elasticsearch.
+- **frontend-website**: Visualize Tweet Map with Angular framework. (developing)
+
 ## Build
 
 JDK version:
