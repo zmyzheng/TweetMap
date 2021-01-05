@@ -11,7 +11,7 @@ targetCompatibility = '11'
 mainClassName = 'io.zmyzheng.processor.App'
 
 ext {
-    flinkVersion = '1.11.2'
+    flinkVersion = '1.12.0'
     scalaBinaryVersion = '2.11'
 
 }
@@ -30,7 +30,7 @@ dependencies {
 
     implementation "org.apache.flink:flink-connector-kafka_${scalaBinaryVersion}:${flinkVersion}"
 
-    implementation group: 'org.apache.flink', name: 'flink-connector-elasticsearch7_2.11', version: '1.11.2'
+    implementation group: 'org.apache.flink', name: 'flink-connector-elasticsearch7_2.11', version: '1.12.0'
 
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
