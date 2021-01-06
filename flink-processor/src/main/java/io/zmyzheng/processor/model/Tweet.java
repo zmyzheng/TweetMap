@@ -1,4 +1,4 @@
-package io.zmyzheng.processor;
+package io.zmyzheng.processor.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
