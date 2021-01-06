@@ -14,7 +14,7 @@ public class SocialMediaCollectionDriver {
 
     public static void main(String[] args) {
 
-        String apiKey = System.getProperty("twitter.apiKey:","application.properties");
+        String apiKey = System.getProperty("twitter.apiKey","application.properties");
         String apiSecret = System.getProperty("twitter.apiSecret","application.properties");
         String token = System.getProperty("twitter.token","application.properties");
         String secret = System.getProperty("twitter.secret","application.properties");

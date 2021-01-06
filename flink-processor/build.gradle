@@ -8,7 +8,7 @@ plugins {
 sourceCompatibility = '11'
 targetCompatibility = '11'
 
-mainClassName = 'io.zmyzheng.processor.App'
+mainClassName = 'io.zmyzheng.processor.Application'
 
 ext {
     flinkVersion = '1.12.0'
