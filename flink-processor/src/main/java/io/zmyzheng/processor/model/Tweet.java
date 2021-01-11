@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tweet {
+public class Tweet implements UniqueEntity<String> {
 
     private String id;
 
@@ -23,4 +23,9 @@ public class Tweet {
     private List<String> hashTags;
 
     private List<Double> coordinate;
+
+    @Override
+    public String getUniqueKey() {
+        return getId();
+    }
 }
