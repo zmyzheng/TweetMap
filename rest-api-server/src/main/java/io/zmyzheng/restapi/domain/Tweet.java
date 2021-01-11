@@ -21,7 +21,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(indexName = "streaming", type = "tweets")
+@Document(indexName = "tweets")
 public class Tweet {
     @Id
     String id;
