@@ -4,6 +4,7 @@ import io.zmyzheng.restapi.api.model.Trend;
 import io.zmyzheng.restapi.api.model.TrendRequest;
 import io.zmyzheng.restapi.domain.Tweet;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,6 +14,8 @@ import java.util.List;
 public interface TweetService {
 
     List<Tweet> getTweets();
+
+    List<Tweet> filterTweets(Date timeFrom, Date timeTo, List<String> selectedTags, List<Double> center, double radius);
 
     List<Tweet> getTweets(long timeFrom, long timeTo);
 

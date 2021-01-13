@@ -8,6 +8,7 @@ import io.zmyzheng.restapi.repository.TweetRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,11 @@ public class TweetServiceImpl implements TweetService {
     @Override
     public List<Tweet> getTweets() {
         return this.tweetRepository.findAll();
+    }
+
+    @Override
+    public List<Tweet> filterTweets(Date timeFrom, Date timeTo, List<String> selectedTags, List<Double> center, double radius) {
+        return null;
     }
 
     @Override
