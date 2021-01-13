@@ -24,16 +24,16 @@ import java.util.List;
 @Document(indexName = "tweets")
 public class Tweet {
     @Id
-    String id;
+    private String id;
 
     @Field(name = "timestamp", type = FieldType.Date)
-    Date timestamp;
+    private Date timestamp;
 
     @Field(name = "hashTags", type = FieldType.Keyword)
-    List<String> hashTags;
+    private List<String> hashTags;
 
     @GeoPointField
-    List<Double> coordinate;
+    private List<Double> coordinate;
 
 
 

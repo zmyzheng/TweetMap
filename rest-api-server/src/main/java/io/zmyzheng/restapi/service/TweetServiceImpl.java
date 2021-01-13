@@ -28,6 +28,11 @@ public class TweetServiceImpl implements TweetService {
     }
 
     @Override
+    public List<Tweet> getTweets() {
+        return this.tweetRepository.findAll();
+    }
+
+    @Override
     public List<Tweet> getTweets(long timeFrom, long timeTo) {
         return this.tweetRepository.findByTimestampBetween(timeFrom, timeTo);
     }

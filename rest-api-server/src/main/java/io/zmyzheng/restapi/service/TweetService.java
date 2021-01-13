@@ -11,6 +11,9 @@ import java.util.List;
  * @Date: 2020-02-17 17:54
  */
 public interface TweetService {
+
+    List<Tweet> getTweets();
+
     List<Tweet> getTweets(long timeFrom, long timeTo);
 
     List<Trend> queryTrends(TrendRequest trendRequest);
