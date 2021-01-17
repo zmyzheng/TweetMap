@@ -12,5 +12,5 @@ import java.util.List;
  * @Version 3.0.0
  */
 public interface HotTopicService {
-    List<HotTopic> filterHotTopics(Date timeFrom, Date timeTo, GeoPoint center, String radius);
+    List<HotTopic> filterHotTopics(Date timeFrom, Date timeTo, GeoPoint center, String radius, int topN);
 }

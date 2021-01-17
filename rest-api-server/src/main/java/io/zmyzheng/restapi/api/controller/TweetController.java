@@ -39,7 +39,8 @@ public class TweetController {
     @PostMapping("/filter")
     @ResponseStatus(HttpStatus.OK)
     public List<TweetDTO> filterTweets(@RequestBody  TweetFilter tweetFilter) {
-        return this.tweetMapper.convert(this.tweetService.filterTweets(tweetFilter.getTimeFrom(), tweetFilter.getTimeTo(), tweetFilter.getSelectedTags(), tweetFilter.getCenter(), tweetFilter.getRadius()));
+        return this.tweetMapper
+                .convert(this.tweetService.filterTweets(tweetFilter.getTimeFrom(), tweetFilter.getTimeTo(), tweetFilter.getSelectedTags(), tweetFilter.getCenter(), tweetFilter.getRadius()));
     }
 
 
