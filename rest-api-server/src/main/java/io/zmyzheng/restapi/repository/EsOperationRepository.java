@@ -28,6 +28,7 @@ import static org.elasticsearch.search.aggregations.AggregationBuilders.terms;
 /**
  * @Author: Mingyang Zheng
  * @Date: 2020-02-23 14:09
+ * @Version 3.0.0
  *
  * @Description: this class defines operations that are not covered in standard Spring Data Repositories
  */
@@ -43,9 +44,14 @@ public class EsOperationRepository {
     }
 
     public List<Tweet> filterTweets(Date timeFrom, Date timeTo, List<String> selectedTags, GeoPoint center, String radius) {
-        Criteria criteria = new Criteria("timestamp").greaterThanEqual(timeFrom).lessThanEqual(timeTo)
-                .and("hashTags").in(selectedTags)
-                .and("coordinate").within(center, radius);
+        Criteria criteria = new Criteria("timestamp").greaterThanEqual(timeFrom).lessThanEqual(timeTo);
+        if (selectedTags != null) {
+            criteria.and("hashTags").in(selectedTags);
+        }
+        if (center != null) {
+            criteria.and("coordinate").within(center, radius);
+        }
+
         Query query = new CriteriaQuery(criteria);
         return this.elasticsearchRestTemplate.search(query, Tweet.class)
                 .get()
