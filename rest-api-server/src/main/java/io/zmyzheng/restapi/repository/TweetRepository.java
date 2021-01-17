@@ -13,5 +13,6 @@ import java.util.List;
 
 @Repository
 public interface TweetRepository extends ElasticsearchRepository<Tweet, String> {
-    List<Tweet> findByTimestampBetween(long from, long to);
+    List<Tweet> findAll();
+
 }

@@ -1,26 +1,28 @@
 package io.zmyzheng.restapi.repository;
 
-import io.zmyzheng.restapi.api.model.TrendRequest;
+import io.zmyzheng.restapi.domain.HotTopic;
+import io.zmyzheng.restapi.domain.Tweet;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
-import org.springframework.data.elasticsearch.core.ResultsExtractor;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
+import org.springframework.data.elasticsearch.core.SearchHit;
+import org.springframework.data.elasticsearch.core.geo.GeoPoint;
+import org.springframework.data.elasticsearch.core.query.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
-
-import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
-import static org.elasticsearch.index.query.QueryBuilders.rangeQuery;
-import static org.elasticsearch.search.aggregations.AggregationBuilders.range;
-import static org.elasticsearch.search.aggregations.AggregationBuilders.terms;
+import java.util.stream.Collectors;
 
 /**
  * @Author: Mingyang Zheng
  * @Date: 2020-02-23 14:09
+ * @Version 3.0.0
  *
  * @Description: this class defines operations that are not covered in standard Spring Data Repositories
  */
@@ -35,19 +37,53 @@ public class EsOperationRepository {
         this.elasticsearchRestTemplate = elasticsearchRestTemplate;
     }
 
-    public List<? extends Terms.Bucket> aggregateByField(TrendRequest trendRequest, String field) {
-        SearchQuery searchQuery = new NativeSearchQueryBuilder()
-                .withQuery(rangeQuery("timestamp").gte(trendRequest.getTimeFrom()).lte(trendRequest.getTimeTo()))
-                .withIndices("streaming").withTypes("tweets")
-                .addAggregation(terms(field).field(field).size(trendRequest.getTopN()))
-                .build();
-        List<? extends Terms.Bucket> buckets = elasticsearchRestTemplate.query(searchQuery, new ResultsExtractor<List<? extends Terms.Bucket>>() {
-            @Override
-            public List<? extends Terms.Bucket> extract(SearchResponse response) {
-                return  ((Terms) response.getAggregations().get(field)).getBuckets();
-            }
-        });
-        return buckets;
+    private Criteria createFilterCriteria(Date timeFrom, Date timeTo, List<String> selectedTags, GeoPoint center, String radius) {
+        Criteria criteria = new Criteria("timestamp").greaterThanEqual(timeFrom).lessThanEqual(timeTo);
+        if (selectedTags != null) {
+            criteria.and("hashTags").in(selectedTags);
+        }
+        if (center != null) {
+            criteria.and("coordinate").within(center, radius);
+        }
+        return criteria;
     }
+
+    public List<Tweet> filterTweets(Date timeFrom, Date timeTo, List<String> selectedTags, GeoPoint center, String radius) {
+        Criteria criteria = createFilterCriteria(timeFrom, timeTo, selectedTags, center, radius);
+        Query query = new CriteriaQuery(criteria);
+        return this.elasticsearchRestTemplate.search(query, Tweet.class)
+                .get()
+                .map(SearchHit::getContent)
+                .collect(Collectors.toList());
+    }
+
+
+    public List<HotTopic> filterHotTopics(Date timeFrom, Date timeTo, GeoPoint center, String radius, int topN) {
+        BoolQueryBuilder builder = QueryBuilders.boolQuery()
+                .filter(QueryBuilders.rangeQuery("timestamp").gte(timeFrom).lte(timeTo));
+
+        if (center != null) {
+            builder.must(QueryBuilders.geoDistanceQuery("coordinate").distance(radius));
+        }
+
+        Query query = new NativeSearchQueryBuilder()
+                .withQuery(builder)
+                .addAggregation(AggregationBuilders.terms("topics").field("hashTags").size(topN))
+                .build();
+
+        return this.elasticsearchRestTemplate.search(query, Tweet.class)
+                .getAggregations()
+                .<Terms>get("topics")
+                .getBuckets()
+                .stream()
+                .map(bucket -> new HotTopic(bucket.getKeyAsString(), bucket.getDocCount()))
+                .collect(Collectors.toList());
+
+
+
+
+    }
+
+
 
 }
