@@ -2,6 +2,7 @@ package io.zmyzheng.processor.impl;
 
 import io.zmyzheng.processor.StreamProcessor;
 import io.zmyzheng.processor.model.Tweet;
+import io.zmyzheng.processor.model.UniqueEntity;
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.functions.RuntimeContext;
@@ -42,7 +43,7 @@ import java.util.concurrent.TimeUnit;
  * @Date 2021-01-05 22:18
  * @Version 1.0.0
  */
-public abstract class KafkaEsProcessor<T> implements StreamProcessor {
+public abstract class KafkaEsProcessor<T extends UniqueEntity<String>> implements StreamProcessor {
 
     private String kafkaBootstrapServers;
     private String kafkaTopic;
@@ -138,8 +139,7 @@ public abstract class KafkaEsProcessor<T> implements StreamProcessor {
                         ObjectMapper objectMapper = new ObjectMapper();
                         return Requests.indexRequest()
                                 .index(esIndexName)
-//                                .type("tweets")
-//                                .id(tweet.getId())
+                                .id(element.getUniqueKey())
                                 .source(objectMapper.writeValueAsBytes(element), XContentType.JSON);
                     }
 

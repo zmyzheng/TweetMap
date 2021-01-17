@@ -9,6 +9,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.data.elasticsearch.annotations.GeoPointField;
+import org.springframework.data.elasticsearch.core.geo.GeoPoint;
 
 
 import java.util.Date;
@@ -17,23 +18,24 @@ import java.util.List;
 /**
  * @Author: Mingyang Zheng
  * @Date: 2020-02-17 00:29
+ * @Version 3.0.0
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(indexName = "streaming", type = "tweets")
+@Document(indexName = "tweets")
 public class Tweet {
     @Id
-    String id;
+    private String id;
 
     @Field(name = "timestamp", type = FieldType.Date)
-    Date timestamp;
+    private Date timestamp;
 
     @Field(name = "hashTags", type = FieldType.Keyword)
-    List<String> hashTags;
+    private List<String> hashTags;
 
     @GeoPointField
-    List<Double> coordinate;
+    private GeoPoint coordinate;
 
 
 

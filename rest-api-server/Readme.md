@@ -1,0 +1,6 @@
+这里选择把DTO和domain object的转换放在API层有两个原因：
+1. 当一个serviceA依赖另一个serviceB的结果时，如果把转换放在service层，那serviceA拿到的只能是转换后的结果，可能会取不到一些不想暴露给外部
+的field。比如serviceA用serviceB的内部field做join，然后把join的结果返回出去。这种情况下serviceB只是一个internal service，不需要暴露给外部，
+   所以根本不需要DTO，如果非得暴露DTO，反而可能使serviceA拿不到想要join的内部field。
+   
+2. 如果把DTO放在service层，那API层和service层都需要保存对外的model，service保存DTO，API保存request response等，不易管理

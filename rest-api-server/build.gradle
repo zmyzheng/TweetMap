@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.4.0'
+	id 'org.springframework.boot' version '2.4.1'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
 	id "com.palantir.docker" version "0.25.0"
@@ -19,6 +19,7 @@ configurations {
 
 ext {
 	set('springBootAdminVersion', "2.3.1")
+	set('mapstructVersion', "1.4.1.Final")
 }
 
 dependencies {
@@ -29,6 +30,12 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+	// If you are using mapstruct in test code
+	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 }
 
 dependencyManagement {
