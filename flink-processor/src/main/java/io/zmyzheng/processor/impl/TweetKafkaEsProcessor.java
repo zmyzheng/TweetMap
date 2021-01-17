@@ -7,6 +7,7 @@ import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.JsonNode;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ArrayNode;
 import org.apache.flink.streaming.api.datastream.DataStream;
+import org.elasticsearch.common.geo.GeoPoint;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,7 +39,7 @@ public class TweetKafkaEsProcessor extends KafkaEsProcessor<Tweet> {
                     tweet.setTimestamp(Long.parseLong(node.get("timestamp_ms").asText()));
 
                     ArrayNode arrayNode = (ArrayNode) node.get("coordinates").get("coordinates");
-                    tweet.setCoordinate(asList(arrayNode.get(0).asDouble(), arrayNode.get(1).asDouble()));
+                    tweet.setCoordinate(new GeoPoint(arrayNode.get(1).asDouble(), arrayNode.get(0).asDouble()));
 
                     arrayNode = (ArrayNode) node.get("entities").get("hashtags");
                     List<String> tags = new ArrayList<>();

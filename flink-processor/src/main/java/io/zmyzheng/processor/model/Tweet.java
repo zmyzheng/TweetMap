@@ -3,6 +3,7 @@ package io.zmyzheng.processor.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.elasticsearch.common.geo.GeoPoint;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class Tweet implements UniqueEntity<String> {
 
     private List<String> hashTags;
 
-    private List<Double> coordinate;
+    private GeoPoint coordinate;
 
     @Override
     public String getUniqueKey() {

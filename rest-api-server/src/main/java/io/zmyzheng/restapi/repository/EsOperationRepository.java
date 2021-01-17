@@ -7,7 +7,6 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
-import org.springframework.data.elasticsearch.core.ResultsExtractor;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.geo.GeoPoint;
@@ -15,7 +14,6 @@ import org.springframework.data.elasticsearch.core.query.Criteria;
 import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.Query;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -55,19 +53,6 @@ public class EsOperationRepository {
                 .collect(Collectors.toList());
     }
 
-    public List<? extends Terms.Bucket> aggregateByField(TrendRequest trendRequest, String field) {
-        SearchQuery searchQuery = new NativeSearchQueryBuilder()
-                .withQuery(rangeQuery("timestamp").gte(trendRequest.getTimeFrom()).lte(trendRequest.getTimeTo()))
-                .withIndices("streaming").withTypes("tweets")
-                .addAggregation(terms(field).field(field).size(trendRequest.getTopN()))
-                .build();
-        List<? extends Terms.Bucket> buckets = elasticsearchRestTemplate.query(searchQuery, new ResultsExtractor<List<? extends Terms.Bucket>>() {
-            @Override
-            public List<? extends Terms.Bucket> extract(SearchResponse response) {
-                return  ((Terms) response.getAggregations().get(field)).getBuckets();
-            }
-        });
-        return buckets;
-    }
+
 
 }

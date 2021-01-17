@@ -46,9 +46,6 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     public List<Trend> queryTrends(TrendRequest trendRequest) {
-        return this.esOperationRepository.aggregateByField(trendRequest, "hashTags")
-                .stream()
-                .map(bucket -> new Trend(bucket.getKeyAsString(), bucket.getDocCount()))
-                .collect(Collectors.toList());
+        return null;
     }
 }
