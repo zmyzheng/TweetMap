@@ -3,6 +3,7 @@ package io.zmyzheng.restapi.api.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.elasticsearch.core.geo.GeoPoint;
 
 import java.util.Date;
 import java.util.List;
@@ -21,6 +22,6 @@ public class TweetDTO {
     private String id;
     private Date timestamp;
     private List<String> hashTags;
-    private List<Double> coordinate;
+    private GeoPoint coordinate;
 
 }

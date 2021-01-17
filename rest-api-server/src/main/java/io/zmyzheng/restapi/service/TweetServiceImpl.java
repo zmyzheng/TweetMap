@@ -6,6 +6,7 @@ import io.zmyzheng.restapi.domain.Tweet;
 import io.zmyzheng.restapi.repository.EsOperationRepository;
 import io.zmyzheng.restapi.repository.TweetRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.elasticsearch.core.geo.GeoPoint;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -34,8 +35,8 @@ public class TweetServiceImpl implements TweetService {
     }
 
     @Override
-    public List<Tweet> filterTweets(Date timeFrom, Date timeTo, List<String> selectedTags, List<Double> center, double radius) {
-        return null;
+    public List<Tweet> filterTweets(Date timeFrom, Date timeTo, List<String> selectedTags, GeoPoint center, String radius) {
+        return this.esOperationRepository.filterTweets(timeFrom, timeTo, selectedTags, center, radius);
     }
 
     @Override

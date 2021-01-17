@@ -3,6 +3,7 @@ package io.zmyzheng.restapi.api.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.elasticsearch.core.geo.GeoPoint;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,6 @@ public class TweetFilter {
     private Date timeFrom;
     private Date timeTo;
     private List<String> selectedTags;
-    private List<Double> center;
-    private double radius;
+    private GeoPoint center;
+    private String radius;
 }

@@ -9,6 +9,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.data.elasticsearch.annotations.GeoPointField;
+import org.springframework.data.elasticsearch.core.geo.GeoPoint;
 
 
 import java.util.Date;
@@ -33,7 +34,7 @@ public class Tweet {
     private List<String> hashTags;
 
     @GeoPointField
-    private List<Double> coordinate;
+    private GeoPoint coordinate;
 
 
 
