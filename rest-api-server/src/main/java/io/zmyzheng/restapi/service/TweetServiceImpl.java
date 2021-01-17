@@ -1,7 +1,5 @@
 package io.zmyzheng.restapi.service;
 
-import io.zmyzheng.restapi.api.model.Trend;
-import io.zmyzheng.restapi.api.model.TrendRequest;
 import io.zmyzheng.restapi.domain.Tweet;
 import io.zmyzheng.restapi.repository.EsOperationRepository;
 import io.zmyzheng.restapi.repository.TweetRepository;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @Author: Mingyang Zheng
@@ -40,13 +37,7 @@ public class TweetServiceImpl implements TweetService {
         return this.esOperationRepository.filterTweets(timeFrom, timeTo, selectedTags, center, radius);
     }
 
-    @Override
-    public List<Tweet> getTweets(long timeFrom, long timeTo) {
-        return this.tweetRepository.findByTimestampBetween(timeFrom, timeTo);
-    }
 
-    @Override
-    public List<Trend> queryTrends(TrendRequest trendRequest) {
-        return null;
-    }
+
+
 }

@@ -2,10 +2,7 @@ package io.zmyzheng.restapi.api.controller;
 
 import io.zmyzheng.restapi.api.model.TweetDTO;
 import io.zmyzheng.restapi.api.mapping.TweetMapper;
-import io.zmyzheng.restapi.api.model.Trend;
-import io.zmyzheng.restapi.api.model.TrendRequest;
 import io.zmyzheng.restapi.api.model.TweetFilter;
-import io.zmyzheng.restapi.domain.Tweet;
 import io.zmyzheng.restapi.service.TweetService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -23,7 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping(TweetController.BASE_URL)
 public class TweetController {
-    public static final String BASE_URL = "api/v1/tweets";
+    public static final String BASE_URL = "api/v3/tweets";
 
     private final TweetService tweetService;
     private final TweetMapper tweetMapper;
