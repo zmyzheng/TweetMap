@@ -1,5 +1,6 @@
 package io.zmyzheng.restapi.service;
 
+import io.zmyzheng.restapi.domain.HotTopicsTrend;
 import io.zmyzheng.restapi.domain.TopicStatistic;
 import io.zmyzheng.restapi.domain.TopicTrend;
 import io.zmyzheng.restapi.repository.EsOperationRepository;
@@ -34,5 +35,10 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public List<TopicTrend> getTopicTrend(String topicName, String calendarInterval, Date timeFrom, Date timeTo, GeoPoint center, String radius) {
         return this.esOperationRepository.getTopicTrend(topicName, calendarInterval, timeFrom, timeTo, center, radius);
+    }
+
+    @Override
+    public List<HotTopicsTrend> getHotTopicsTrend(String calendarInterval, int topN, Date timeFrom, Date timeTo, GeoPoint center, String radius) {
+        return this.esOperationRepository.getHotTopicsTrend(calendarInterval, topN, timeFrom, timeTo, center, radius);
     }
 }

@@ -1,11 +1,9 @@
 package io.zmyzheng.restapi.api.controller;
 
+import io.zmyzheng.restapi.api.mapping.HotTopicsTrendMapper;
 import io.zmyzheng.restapi.api.mapping.TopicStatisticMapper;
 import io.zmyzheng.restapi.api.mapping.TopicTrendMapper;
-import io.zmyzheng.restapi.api.model.TopicStatisticFilter;
-import io.zmyzheng.restapi.api.model.TopicStatisticDTO;
-import io.zmyzheng.restapi.api.model.TopicTrendDTO;
-import io.zmyzheng.restapi.api.model.TopicTrendFilter;
+import io.zmyzheng.restapi.api.model.*;
 import io.zmyzheng.restapi.service.TopicService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -28,11 +26,13 @@ public class TopicController {
     private final TopicService topicService;
     private final TopicStatisticMapper topicStatisticMapper;
     private final TopicTrendMapper topicTrendMapper;
+    private final HotTopicsTrendMapper hotTopicsTrendMapper;
 
-    public TopicController(TopicService topicService, TopicStatisticMapper topicStatisticMapper, TopicTrendMapper topicTrendMapper) {
+    public TopicController(TopicService topicService, TopicStatisticMapper topicStatisticMapper, TopicTrendMapper topicTrendMapper, HotTopicsTrendMapper hotTopicsTrendMapper) {
         this.topicService = topicService;
         this.topicStatisticMapper = topicStatisticMapper;
         this.topicTrendMapper = topicTrendMapper;
+        this.hotTopicsTrendMapper = hotTopicsTrendMapper;
     }
 
     @PostMapping("/statistic")
@@ -47,5 +47,12 @@ public class TopicController {
     public List<TopicTrendDTO> filterTrendByTopic(@RequestParam String topicName, @RequestBody TopicTrendFilter topicTrendFilter) {
         return this.topicTrendMapper
                 .convert(this.topicService.getTopicTrend(topicName, topicTrendFilter.getCalendarInterval(), topicTrendFilter.getTimeFrom(), topicTrendFilter.getTimeTo(), topicTrendFilter.getCenter(), topicTrendFilter.getRadius()));
+    }
+
+    @PostMapping("/trend")
+    @ResponseStatus(HttpStatus.OK)
+    public List<HotTopicsTrendDTO> getHotTopicsTrend(@RequestBody HotTopicsTrendFilter hotTopicsTrendFilter) {
+        return this.hotTopicsTrendMapper
+                .convert(this.topicService.getHotTopicsTrend(hotTopicsTrendFilter.getCalendarInterval(), hotTopicsTrendFilter.getTopN(), hotTopicsTrendFilter.getTimeFrom(), hotTopicsTrendFilter.getTimeTo(), hotTopicsTrendFilter.getCenter(), hotTopicsTrendFilter.getRadius()));
     }
 }

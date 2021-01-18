@@ -1,5 +1,6 @@
 package io.zmyzheng.restapi.service;
 
+import io.zmyzheng.restapi.domain.HotTopicsTrend;
 import io.zmyzheng.restapi.domain.TopicStatistic;
 import io.zmyzheng.restapi.domain.TopicTrend;
 import org.springframework.data.elasticsearch.core.geo.GeoPoint;
@@ -17,6 +18,8 @@ public interface TopicService {
     List<TopicStatistic> filterTopics(Date timeFrom, Date timeTo, GeoPoint center, String radius, int topN);
 
     List<TopicTrend> getTopicTrend(String topicName, String calendarInterval, Date timeFrom, Date timeTo, GeoPoint center, String radius);
+
+    List<HotTopicsTrend> getHotTopicsTrend(String calendarInterval, int topN, Date timeFrom, Date timeTo, GeoPoint center, String radius);
 
 
 }
