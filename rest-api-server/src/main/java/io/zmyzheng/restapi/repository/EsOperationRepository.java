@@ -1,5 +1,6 @@
 package io.zmyzheng.restapi.repository;
 
+import io.zmyzheng.restapi.domain.HotTopicsTrend;
 import io.zmyzheng.restapi.domain.TopicStatistic;
 import io.zmyzheng.restapi.domain.TopicTrend;
 import io.zmyzheng.restapi.domain.Tweet;
@@ -85,7 +86,7 @@ public class EsOperationRepository {
 
 
     public List<TopicTrend> getTopicTrend(String topicName, String calendarInterval, Date timeFrom, Date timeTo, GeoPoint center, String radius) {
-        String aggregationName = "topicTrends";
+        String aggregationName = "topicTrend";
         BoolQueryBuilder builder = QueryBuilders.boolQuery()
                 .filter(QueryBuilders.rangeQuery("timestamp").gte(timeFrom).lte(timeTo))
                 .filter(QueryBuilders.termQuery("hashTags", topicName));
@@ -105,7 +106,37 @@ public class EsOperationRepository {
                 .stream()
                 .map(bucket -> new TopicTrend(new Date(((Instant) bucket.getKey()).toEpochMilli()), bucket.getDocCount()))
                 .collect(Collectors.toList());
+    }
 
+
+    public List<HotTopicsTrend> getHotTopicsTrend(String calendarInterval, int topN, Date timeFrom, Date timeTo, GeoPoint center, String radius) {
+        String aggregationName = "hotTopicsTrend";
+        String subAggregationName = "topics";
+        BoolQueryBuilder builder = QueryBuilders.boolQuery()
+                .filter(QueryBuilders.rangeQuery("timestamp").gte(timeFrom).lte(timeTo));
+
+        if (center != null) {
+            builder.must(QueryBuilders.geoDistanceQuery("coordinate").distance(radius));
+        }
+
+        Query query = new NativeSearchQueryBuilder()
+                .withQuery(builder)
+                .addAggregation(AggregationBuilders.dateHistogram(aggregationName).field("timestamp").calendarInterval(new DateHistogramInterval(calendarInterval))
+                                .subAggregation(AggregationBuilders.terms(subAggregationName).field("hashTags").size(topN)))
+                .build();
+
+        return this.elasticsearchRestTemplate.search(query, Tweet.class)
+                .getAggregations()
+                .<Histogram>get(aggregationName)
+                .getBuckets()
+                .stream()
+                .map(bucket -> {
+                    Date date = new Date(((Instant) bucket.getKey()).toEpochMilli());
+                    List<TopicStatistic> hotTopics = bucket.getAggregations().<Terms>get(subAggregationName).getBuckets()
+                            .stream().map(subBucket -> new TopicStatistic(subBucket.getKeyAsString(), subBucket.getDocCount())).collect(Collectors.toList());
+                    return new HotTopicsTrend(date, hotTopics);
+                })
+                .collect(Collectors.toList());
     }
 
 
