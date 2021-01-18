@@ -17,7 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TopicTrendFilter {
-    private String topicName;
+
     private String calendarInterval;
 
     private Date timeFrom;

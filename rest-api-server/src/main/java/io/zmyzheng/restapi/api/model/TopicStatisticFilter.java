@@ -16,12 +16,14 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class HotTopicFilter {
+public class TopicStatisticFilter {
+
+    private int topN;
 
     private Date timeFrom;
     private Date timeTo;
     private GeoPoint center;
     private String radius;
-    private int topN;
+
 
 }

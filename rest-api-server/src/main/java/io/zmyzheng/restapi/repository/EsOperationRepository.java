@@ -1,14 +1,12 @@
 package io.zmyzheng.restapi.repository;
 
-import io.zmyzheng.restapi.domain.HotTopic;
+import io.zmyzheng.restapi.domain.TopicStatistic;
 import io.zmyzheng.restapi.domain.TopicTrend;
 import io.zmyzheng.restapi.domain.Tweet;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
-import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval;
 import org.elasticsearch.search.aggregations.bucket.histogram.Histogram;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
@@ -62,7 +60,7 @@ public class EsOperationRepository {
     }
 
 
-    public List<HotTopic> filterHotTopics(Date timeFrom, Date timeTo, GeoPoint center, String radius, int topN) {
+    public List<TopicStatistic> filterTopics(Date timeFrom, Date timeTo, GeoPoint center, String radius, int topN) {
         String aggregationName = "topics";
         BoolQueryBuilder builder = QueryBuilders.boolQuery()
                 .filter(QueryBuilders.rangeQuery("timestamp").gte(timeFrom).lte(timeTo));
@@ -73,7 +71,7 @@ public class EsOperationRepository {
 
         Query query = new NativeSearchQueryBuilder()
                 .withQuery(builder)
-                .addAggregation(AggregationBuilders.terms(aggregationName).field("hashTags").size(topN))
+                .addAggregation(AggregationBuilders.terms(aggregationName).field("hashTags").size(topN)) // By default, the buckets are ordered by their doc_count descending. https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-terms-aggregation.html#search-aggregations-bucket-terms-aggregation-order
                 .build();
 
         return this.elasticsearchRestTemplate.search(query, Tweet.class)
@@ -81,7 +79,7 @@ public class EsOperationRepository {
                 .<Terms>get(aggregationName)
                 .getBuckets()
                 .stream()
-                .map(bucket -> new HotTopic(bucket.getKeyAsString(), bucket.getDocCount()))
+                .map(bucket -> new TopicStatistic(bucket.getKeyAsString(), bucket.getDocCount()))
                 .collect(Collectors.toList());
     }
 
