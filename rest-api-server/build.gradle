@@ -36,6 +36,9 @@ dependencies {
 	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 	// If you are using mapstruct in test code
 	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+
+	implementation 'org.springdoc:springdoc-openapi-ui:1.5.2'
 }
 
 dependencyManagement {
