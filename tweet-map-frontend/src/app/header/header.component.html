@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <a class="navbar-brand" [routerLink]="'map'">
+    <img src="/assets/TweetMap-Architecture.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    Tweet Map
+  </a>
+
+  <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
+  <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Step 2: Add the ngbCollapse directive to the element below. -->
+  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+    <ul ngbNav [activeId]="path" class="navbar-nav navbar-nav-scroll">
+      <li [ngbNavItem]="tab.link" *ngFor="let tab of tabs" >
+        <!-- Step 4: Close the menu when a link is clicked. -->
+        <a ngbNavLink [routerLink]="[tab.link]"  (click)="isMenuCollapsed = true">{{tab.tittle}}</a>
+      </li>
+    </ul>
+  </div>
+
+
+</nav>
