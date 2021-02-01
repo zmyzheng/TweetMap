@@ -14,6 +14,8 @@ export class HeaderComponent implements OnInit {
     { tittle: 'Topics', link: '/topics' },
     { tittle: 'Trend', link: '/trend' }
   ];
+
+  // 记录当前的URL，使得无论是后退，跳转还是直接在地址栏输入地址，都能高亮当前的导航栏tab。与header.component.html中的activeId配合使用
   path = '';
 
   // Step 1:
