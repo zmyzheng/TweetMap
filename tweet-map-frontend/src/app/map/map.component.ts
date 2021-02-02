@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-map',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit {
 
-  constructor() { }
+  tweetFilterForm = this.formBuilder.group({
+    timeFrom: null,
+    timeTo: null,
+    selectedTags: [],
+    center: { lat: 0, lon: 0 },
+    radius: 0
+  });
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
