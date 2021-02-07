@@ -12,13 +12,20 @@ export class MapComponent implements OnInit {
     timeFrom: null,
     timeTo: null,
     selectedTags: [],
-    center: { lat: 0, lon: 0 },
-    radius: 0
+    center: this.formBuilder.group({
+      lat: null,
+      lon: null
+    }),
+    radius: -1
   });
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(): void {
+    console.warn(this.tweetFilterForm.value);
   }
 
 }
