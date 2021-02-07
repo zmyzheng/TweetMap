@@ -10,6 +10,8 @@ import { MapComponent } from './map/map.component';
 import { TopicListComponent } from './topic-list/topic-list.component';
 import { TrendComponent } from './trend/trend.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {GoogleMapsModule} from '@angular/google-maps';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -23,9 +25,11 @@ import {ReactiveFormsModule} from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
