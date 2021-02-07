@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MapComponent } from './map/map.component';
 import { TopicListComponent } from './topic-list/topic-list.component';
 import { TrendComponent } from './trend/trend.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { TrendComponent } from './trend/trend.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     NgbModule
   ],
