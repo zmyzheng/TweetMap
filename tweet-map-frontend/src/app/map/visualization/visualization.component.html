@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row ">
+    <div class="col-sm-4">
+      <h5>Tweet Filter</h5>
+      <form [formGroup]="tweetFilterForm"  (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group col-lg-6">
+            <label for="timeFrom">Time From</label>
+            <input id="timeFrom" type="date" class="form-control" formControlName="timeFrom" />
+          </div>
+
+          <div class="form-group col-lg-6">
+            <label for="timeTo">Time To</label>
+            <input id="timeTo" type="date" class="form-control" formControlName="timeTo" />
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="selectedTags">Selected Tags</label>
+          <select id="selectedTags" multiple class="form-control" formControlName="selectedTags" >
+            <option>food</option>
+            <option>music</option>
+            <option>game</option>
+            <option>web</option>
+          </select>
+        </div>
+
+        <div class="form-group" formGroupName="center">
+          <label >Center</label>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="number" class="form-control"  placeholder="lat" formControlName="lat"/>
+            </div>
+            <div class="col-md-6">
+              <input  type="number" class="form-control" placeholder="lon" formControlName="lon"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="radius">Radius</label>
+          <input id="radius" type="number" class="form-control" formControlName="radius" />
+        </div>
+
+        <button class="btn btn-success" type="submit">Search</button>
+      </form>
+    </div>
+
+    <div class="col-sm-8">
+      fff
+    </div>
+
+  </div>
+
+</div>
+
