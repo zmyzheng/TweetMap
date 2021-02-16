@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  selector: 'app-visualization',
+  templateUrl: './visualization.component.html',
+  styleUrls: ['./visualization.component.css']
 })
-export class MapComponent implements OnInit {
+export class VisualizationComponent implements OnInit {
 
   tweetFilterForm = this.formBuilder.group({
     timeFrom: null,
@@ -27,5 +27,4 @@ export class MapComponent implements OnInit {
   onSubmit(): void {
     console.warn(this.tweetFilterForm.value);
   }
-
 }

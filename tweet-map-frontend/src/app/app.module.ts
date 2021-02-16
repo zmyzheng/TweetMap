@@ -6,11 +6,10 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { MapComponent } from './map/map.component';
 import { TopicListComponent } from './topic-list/topic-list.component';
 import { TrendComponent } from './trend/trend.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import {GoogleMapsModule} from '@angular/google-maps';
+
+
 import {HttpClientModule} from '@angular/common/http';
 
 
@@ -19,17 +18,17 @@ import {HttpClientModule} from '@angular/common/http';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    MapComponent,
+
     TopicListComponent,
     TrendComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule,
+
     AppRoutingModule,
     NgbModule,
-    GoogleMapsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
