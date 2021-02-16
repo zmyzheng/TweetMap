@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row ">
+  <div class="row">
     <div class="col-sm-4">
       <h5>Tweet Filter</h5>
       <form [formGroup]="tweetFilterForm"  (ngSubmit)="onSubmit()">
@@ -47,10 +47,20 @@
       </form>
     </div>
 
-    <div class="col-sm-8">
+    <div class="col-sm-6">
       <div *ngIf="apiLoaded | async">
-        <google-map></google-map>
+        <google-map [center]="center"
+                    [zoom]="zoom"
+                    (mapClick)="onClickMap($event)"
+                    (mapMousemove)="onMapMouseMove($event)">
+<!--          <map-heatmap-layer [data]="heatmapData" [options]="heatmapOptions"></map-heatmap-layer>-->
+        </google-map>
       </div>
+    </div>
+
+    <div class="col-sm-2">
+      <div>Latitude: {{currentPosition?.lat}}</div>
+      <div>Longitude: {{currentPosition?.lng}}</div>
     </div>
 
   </div>
