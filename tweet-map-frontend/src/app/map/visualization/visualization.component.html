@@ -48,7 +48,9 @@
     </div>
 
     <div class="col-sm-8">
-      fff
+      <div *ngIf="apiLoaded | async">
+        <google-map></google-map>
+      </div>
     </div>
 
   </div>

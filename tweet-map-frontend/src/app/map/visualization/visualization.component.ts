@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-visualization',
@@ -19,7 +23,15 @@ export class VisualizationComponent implements OnInit {
     radius: -1
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  apiLoaded: Observable<boolean>;
+
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) {
+    this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=AIzaSyC_DnKvq3j_JZ3SQgNVkQOkE90Ii5p7kpU', 'callback')
+      .pipe(
+        map(() => true),
+        catchError(() => of(false)),
+      );
+  }
 
   ngOnInit(): void {
   }
