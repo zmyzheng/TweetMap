@@ -48,7 +48,7 @@ export class VisualizationComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) {
-    this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=AIzaSyC_DnKvq3j_JZ3SQgNVkQOkE90Ii5p7kpU&libraries=visualization', 'callback')
+    this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization', 'callback')
       .pipe(
         map(() => true),
         catchError(() => of(false)),
